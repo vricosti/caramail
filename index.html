@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaraMail - Messagerie gratuite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+
+        body {
+            background: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* ── Left sidebar — 21.4% width, full height ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 21.4%;
+            height: 100%;
+            background: #CBCBFF;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        /* Dark curve inside sidebar — same shape as .bg-dark but #00003E */
+        .sidebar-curve {
+            position: absolute;
+            bottom: 0;
+            left: -10vw;
+            width: 120vw;
+            height: 40vh;
+            background: #00003E;
+            border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+        }
+
+        /* ── Dark bottom section with gentle curve ── */
+        .bg-dark {
+            position: fixed;
+            bottom: 0;
+            left: -10%;
+            width: 120%;
+            height: 40%;
+            background: #000;
+            border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+        }
+
+        /* ── CaraMail text logo — top left ── */
+        .logo {
+            position: fixed;
+            top: 22px;
+            left: 28px;
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 0;
+        }
+
+        .logo-svg {
+            width: 230px;
+            height: 58px;
+        }
+
+
+        /* ── Login area — planet image + form ── */
+        .login-area {
+            position: fixed;
+            top: 60.0%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .planet-img {
+            width: 372px;
+            height: 372px;
+            display: block;
+        }
+
+        .login-form {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .form-row label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        .form-row input {
+            width: 100px;
+            height: 21px;
+            border: 1px solid #888;
+            padding: 1px 4px;
+            font-size: 12px;
+            background: #fff;
+            border-radius: 0;
+            -webkit-appearance: none;
+        }
+
+        .btn-entrer {
+            margin-top: 10px;
+            padding: 3px 26px;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            border: 2px outset #d0d0d0;
+            background: #FAFAFC;
+            border-radius: 4px;
+        }
+
+        .btn-entrer:active {
+            border-style: inset;
+        }
+
+        /* ── Accent texts ── */
+        .text-nouveau-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 372px;
+            height: 372px;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .text-creez-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 372px;
+            height: 372px;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        /* ── Bottom right link ── */
+        .bottom-link {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bottom-link .arrow {
+            font-size: 14px;
+            transform: scaleY(1.5);
+            background: linear-gradient(to right, #66aaee, #2244aa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bottom-link a {
+            color: #fff;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+
+        .bottom-link a:hover {
+            color: #66aaee;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-curve"></div>
+    </div>
+    <div class="bg-dark"></div>
+
+    <!-- CaraMail text logo -->
+    <div class="logo">
+        <svg class="logo-svg" viewBox="0 0 230 58">
+            <!-- Filled shape without top/bottom borders -->
+            <path d="M 45,2 L 185,2 Q 201,29 185,56 L 45,56 Q 29,29 45,2 Z" fill="#F0ECC7" stroke="none"/>
+            <!-- Left parenthesis curve -->
+            <path d="M 45,2 Q 29,29 45,56" fill="none" stroke="#8b2040" stroke-width="5" stroke-linecap="round"/>
+            <!-- Right parenthesis curve -->
+            <path d="M 185,2 Q 201,29 185,56" fill="none" stroke="#8b2040" stroke-width="5" stroke-linecap="round"/>
+            <!-- CaraMail text, stretched vertically -->
+            <g transform="translate(115,29) scale(1,1.25) translate(-115,-29)">
+                <text x="115" y="42" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="36" font-weight="400" letter-spacing="0.5" fill="#2a2a2a">CaraMail</text>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Login planet area -->
+    <div class="login-area">
+        <img src="original/caramail_login_area_transparent.png" class="planet-img" alt="CaraMail">
+        <form class="login-form" action="#" method="post">
+            <div class="form-row">
+                <label for="compte">Compte</label>
+                <input type="text" id="compte" name="compte">
+            </div>
+            <div class="form-row">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" id="mdp" name="mdp">
+            </div>
+            <button type="submit" class="btn-entrer">Entrer</button>
+        </form>
+        <svg class="text-nouveau-svg" viewBox="0 0 372 372" overflow="visible">
+            <defs>
+                <path id="nouveau-arc" d="M 30,228 A 170,170 0 0,0 105,326" />
+            </defs>
+            <text font-size="23" font-weight="bold" font-style="italic" fill="#E9060D" font-family="'Arial Narrow', Arial, sans-serif" letter-spacing="-0.5">
+                <textPath href="#nouveau-arc">Nouveau ?</textPath>
+            </text>
+        </svg>
+        <svg class="text-creez-svg" viewBox="0 0 372 372" overflow="visible">
+            <defs>
+                <path id="creez-arc" d="M 170,355 A 170,170 0 0,0 348,142" />
+            </defs>
+            <text font-size="23" font-weight="bold" font-style="italic" fill="#fff" font-family="'Arial Narrow', Arial, sans-serif" letter-spacing="-0.5">
+                <textPath href="#creez-arc">Créez votre compte gratuit !</textPath>
+            </text>
+        </svg>
+    </div>
+
+    <!-- Bottom right registration link -->
+    <div class="bottom-link">
+        <span class="arrow">&#9654;</span>
+        <a href="#">Créez votre compte gratuit</a>
+    </div>
+</body>
+</html>
