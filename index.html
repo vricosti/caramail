@@ -178,6 +178,65 @@
         .bottom-link a:hover {
             color: #66aaee;
         }
+
+        /* ── Modal dialog ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 30, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: linear-gradient(145deg, #1a1a4e, #0a0a2a);
+            border: 2px solid #4a4aaa;
+            border-radius: 12px;
+            padding: 36px 40px;
+            max-width: 520px;
+            color: #e0e0ff;
+            font-size: 15px;
+            line-height: 1.7;
+            box-shadow: 0 8px 40px rgba(0, 0, 80, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .modal p {
+            margin-bottom: 16px;
+        }
+
+        .modal a {
+            color: #66aaee;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .modal a:hover {
+            color: #99ccff;
+        }
+
+        .modal .btn-close {
+            margin-top: 20px;
+            padding: 6px 28px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            border: 1px solid #4a4aaa;
+            background: #2a2a5e;
+            color: #e0e0ff;
+            border-radius: 4px;
+        }
+
+        .modal .btn-close:hover {
+            background: #3a3a7e;
+        }
     </style>
 </head>
 <body>
@@ -214,7 +273,7 @@
                 <label for="mdp">Mot de passe</label>
                 <input type="password" id="mdp" name="mdp">
             </div>
-            <button type="submit" class="btn-entrer">Entrer</button>
+            <button type="button" class="btn-entrer" onclick="document.getElementById('modal').classList.add('active')">Entrer</button>
         </form>
         <svg class="text-nouveau-svg" viewBox="0 0 372 372" overflow="visible">
             <defs>
@@ -232,6 +291,16 @@
                 <textPath href="#creez-arc">Créez votre compte gratuit !</textPath>
             </text>
         </svg>
+    </div>
+
+    <!-- Nostalgia modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <p>J'ai eu un moment de nostalgie et je me suis dit que ça me ferait plaisir de recréer CaraMail...</p>
+            <p>Avant de me rappeler que quelqu'un l'avait déjà fait sur <a href="https://www.junelive.net/" target="_blank">junelive.net</a> 😄</p>
+            <p>La différence ? Ici, au lieu d'utiliser l'image de fond toute nulle du site original, tout est fait en <strong>CSS / SVG</strong>.</p>
+            <button class="btn-close" onclick="document.getElementById('modal').classList.remove('active')">Fermer</button>
+        </div>
     </div>
 
     <!-- Bottom right registration link -->
